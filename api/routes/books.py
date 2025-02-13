@@ -60,3 +60,15 @@ async def update_book(book_id: int, book: Book) -> Book:
 async def delete_book(book_id: int) -> None:
     db.delete_book(book_id)
     return JSONResponse(status_code=status.HTTP_204_NO_CONTENT, content=None)
+
+from fastapi import APIRouter, HTTPException
+from api.db.schemas import books
+
+router = APIRouter()
+
+@router.get("/api/v1/books/{book_id}")
+def get_book(book_id: int):
+    book = next((book for book in books if book["id"] == book_id), None)
+    if not book:
+        raise HTTPException(status_code=404, detail="Book not found")
+    return book

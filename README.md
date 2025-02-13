@@ -144,3 +144,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## Support
 
 For support, please open an issue in the GitHub repository.
+
+## CI/CD Setup
+- CI pipeline runs pytest on pull requests
+- CD pipeline deploys app on merge to main
+- App served with Nginx as reverse proxy
