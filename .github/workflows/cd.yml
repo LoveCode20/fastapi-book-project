@@ -8,5 +8,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
       - name: Deploy
-        run: ./deploy.sh
+        run: |
+          echo "Deploying FastAPI application..."
+          # Add your deployment commands here, for example:
+          # ssh user@server 'cd /path/to/app && git pull && pip install -r requirements.txt && systemctl restart app'
